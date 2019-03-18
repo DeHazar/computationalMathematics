@@ -92,7 +92,13 @@ def calculateSplain(a: float, b: float, n: int,
 
 
 if __name__ == '__main__':
-    x_matrix, center_mas, n, h = calculateSplain(a=0.0, b=math.pi, n=100, fun=lambda x: math.sin(x),
-                                                 diferSecond=lambda x: -math.sin(x))
-    spine = splainThird(x_matrix, center_mas, h, n, 0, fun=lambda x: math.sin(x))
-    print(spine)
+    deltaMax =[]
+    n =5
+    for i in range(12):
+        x_matrix, center_mas, n, h = calculateSplain(a=0.0, b=math.pi, n=n, fun=lambda x: math.sin(x),
+                                                     diferSecond=lambda x: -math.sin(x))
+        spine = splainThird(x_matrix, center_mas, h, n, 1, fun=lambda x: math.sin(x))
+        deltaMax.append(abs(spine - math.sin(1)))
+        n = n*2
+        print(spine)
+    print(deltaMax)
