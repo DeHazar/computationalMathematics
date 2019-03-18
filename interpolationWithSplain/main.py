@@ -36,9 +36,9 @@ def splainThird(x, m, h, n, value, fun):
     :param m: матрица решений
     :param h: шаг
     :param n: количество разбиений
-    :param value:
-    :param fun:
-    :return:
+    :param value: искомое значение
+    :param fun: исходная функция
+    :return: значение сплайна в точке
     """
     index = -1
     for i in range(n - 1):
@@ -73,10 +73,6 @@ def calculateSplain(a: float, b: float, n: int,
 
         right_matrix[i] = (fun(x_matrix[i + 1]) - fun(x_matrix[i])) / h - (fun(x_matrix[i]) - fun(x_matrix[i - 1])) / h
 
-    # massiv_left = np.array(left_matrix)
-    # massiv_right = np.array(right_matrix)
-    # answer = np.linalg.solve(massiv_left, massiv_right)
-
     lambda_array[0] = -left_matrix[0][1] / left_matrix[0][0]
     u_array[0] = right_matrix[0] / left_matrix[0][0]
 
@@ -98,5 +94,5 @@ def calculateSplain(a: float, b: float, n: int,
 if __name__ == '__main__':
     x_matrix, center_mas, n, h = calculateSplain(a=0.0, b=math.pi, n=100, fun=lambda x: math.sin(x),
                                                  diferSecond=lambda x: -math.sin(x))
-    spine = splainThird(x_matrix, center_mas, h, n, math.pi / 2, fun=lambda x: math.sin(x))
+    spine = splainThird(x_matrix, center_mas, h, n, 0, fun=lambda x: math.sin(x))
     print(spine)
